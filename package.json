@@ -1,0 +1,19 @@
+{
+  "name": "union-bot",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "bot:test": "node index.js",
+    "bot:local": "functions-framework --target unionBot --port 8081",
+    "bot:deploy": "gcloud functions deploy union-bot --runtime nodejs16 --env-vars-file .env.yaml --trigger-http --allow-unauthenticated --region us-central1 --entry-point unionBot "
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@google-cloud/functions-framework": "^3.1.0",
+    "dayjs": "^1.11.0",
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0"
+  }
+}
