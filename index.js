@@ -4,10 +4,11 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 const { getMsg } = require('./utils.js');
 const { BOT_TOKEN } = require('./config.json');
 
-const CHANNEL_NAME = 'raid';
+const CHANNEL_NAME = process.env.TEST ? 'bot-testing' : 'raid'
 
-// const CHANNEL_NAME = 'bot-testing';
-// client.login(BOT_TOKEN); // FIXME
+if (process.env.TEST) {
+  client.login(BOT_TOKEN); // FIXME
+}
 
 client.on('ready', async () => {
   console.log(`Logged in as ${client.user.tag}`);
