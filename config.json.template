@@ -5,6 +5,11 @@
     { "day": 2, "time" : "19:00" },
     { "day": 2, "time" : "20:00" }
   ],
+  "startTimes": [
+    { "day": 1, "time" : "18:00" },
+    { "day": 2, "time" : "18:00" }
+  ],
   "tz": "America/Los_Angeles",
-  "BOT_TOKEN": ""
+  "BOT_TOKEN": "",
+  "PASSCODE": ""
 }

@@ -6,7 +6,8 @@
   "scripts": {
     "bot:test": "node index.js",
     "bot:local": "functions-framework --target unionBot --port 8081",
-    "bot:deploy": "gcloud functions deploy union-bot --runtime nodejs16 --env-vars-file .env.yaml --trigger-http --allow-unauthenticated --region us-central1 --entry-point unionBot "
+    "bot:deploy": "gcloud functions deploy union-bot --runtime nodejs16 --trigger-http --allow-unauthenticated --region us-central1 --entry-point unionBot",
+    "test": "node test.js"
   },
   "author": "",
   "license": "UNLICENSED",

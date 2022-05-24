@@ -1,5 +1,12 @@
-const { 
-  getRandomReminder, getMsg, getMinutesToBreak,
+const {
+  getRandomBreakReminder,
+  getRandomStartReminder,
+  getTimeToBreak,
+  getTimeToStart,
+  getBreakMsg,
+  getStartMsg,
 } = require('./utils.js');
 
-console.log(getMsg());
+console.log(getStartMsg());
+console.log('\n');
+console.log(getBreakMsg());

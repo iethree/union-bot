@@ -1,5 +1,6 @@
-const reminders = require('./reminders.json');
-const { breakTimes, tz } = require('./config.json');
+const breakReminders = require('./breakReminders.json');
+const startReminders = require('./startReminders.json');
+const { breakTimes, startTimes, tz } = require('./config.json');
 
 const dayjs = require('dayjs');
 const utc = require('dayjs/plugin/utc')
@@ -7,11 +8,18 @@ const timezone = require('dayjs/plugin/timezone');
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-const getMsg = () => {
+const getBreakMsg = () => {
   const minsToBreak = getTimeToBreak();
-  const reminder = getRandomReminder();
+  const reminder = getRandomReminder(breakReminders);
 
-  return `${reminder} (${minsToBreak.toLocaleString()} minutes to break)`;
+  return `${reminder} \n(${minsToBreak.toLocaleString()} minutes to break)`;
+};
+
+const getStartMsg = () => {
+  const minsttoStart = getTimeToStart();
+  const reminder = getRandomReminder(startReminders);
+
+  return `${reminder} \n(${minsttoStart.toLocaleString()} minutes to raid)`;
 };
 
 const getTimeToBreak = () => {
@@ -19,7 +27,7 @@ const getTimeToBreak = () => {
 
   const minsToBreak = breakTimes.reduce((lowest, thisOne) => {
     const [h, m] = thisOne.time.split(':');
-    
+
     const breakTime = dayjs().tz(tz).day(thisOne.day).hour(h).minute(m);
     const diff = breakTime.diff(now, 'minute') > 0
       ? breakTime.diff(now, 'minute')
@@ -33,8 +41,33 @@ const getTimeToBreak = () => {
   return minsToBreak;
 };
 
-const getRandomReminder = () => {
+const getTimeToStart = () => {
+  const now = dayjs().tz(tz);
+
+  const minsToStart = startTimes.reduce((lowest, thisOne) => {
+    const [h, m] = thisOne.time.split(':');
+
+    const startTime = dayjs().tz(tz).day(thisOne.day).hour(h).minute(m);
+    const diff = startTime.diff(now, 'minute') > 0
+      ? startTime.diff(now, 'minute')
+      : startTime.add(1, 'week').diff(now, 'minute');
+
+    if (diff < lowest) return diff;
+
+    return lowest;
+  }, Infinity);
+
+  return minsToStart;
+};
+
+const getRandomReminder = (reminders) => {
   return reminders[Math.floor(Math.random() * reminders.length)];
 };
 
-module.exports = { getMsg, getTimeToBreak, getRandomReminder };
+module.exports = {
+  getBreakMsg, getStartMsg,
+  getTimeToBreak,
+  getTimeToStart,
+  getRandomBreakReminder: () => getRandomReminder(breakReminders),
+  getRandomStartReminder: () => getRandomReminder(startReminders),
+};
