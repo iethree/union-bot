@@ -64,10 +64,24 @@ const getRandomReminder = (reminders) => {
   return reminders[Math.floor(Math.random() * reminders.length)];
 };
 
+const getCountdownMsg = () => {
+  const now = dayjs().tz(tz);
+  const dragonflightRelease = dayjs().tz(tz).month(10).date(28).hour(15);
+  const daysToRelease = dragonflightRelease.diff(now, 'day');
+
+  if (daysToRelease > 5) {
+    return `:dragon:  **${daysToRelease} days to Dragonflight!**  :dragon:`;
+  }
+
+  const hoursToRelease = dragonflightRelease.diff(now, 'hour');
+  return `:dragon:  **${hoursToRelease} hours to Dragonflight!**  :dragon:`;
+}
+
 module.exports = {
   getBreakMsg, getStartMsg,
   getTimeToBreak,
   getTimeToStart,
   getRandomBreakReminder: () => getRandomReminder(breakReminders),
   getRandomStartReminder: () => getRandomReminder(startReminders),
+  getCountdownMsg,
 };
