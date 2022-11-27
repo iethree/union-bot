@@ -74,7 +74,36 @@ const getCountdownMsg = () => {
   }
 
   const hoursToRelease = dragonflightRelease.diff(now, 'hour');
-  return `:dragon:  **${hoursToRelease} hours to Dragonflight!**  :dragon:`;
+
+  if (hoursToRelease > 0) {
+    return `:dragon:  **${hoursToRelease} hours to Dragonflight!**  :dragon:`;
+  }
+
+  const minutesToRelease = dragonflightRelease.diff(now, 'minute');
+
+  if (minutesToRelease > 0) {
+    return `:dragon:  **${hoursToRelease} minutes to Dragonflight!**  :dragon:`;
+  }
+
+  return null;
+}
+
+const getRaidCountdownMsg = () => {
+  const now = dayjs().tz(tz);
+  const raidRelease = dayjs().tz(tz).month(11).date(13).hour(18);
+  const daysToRelease = raidRelease.diff(now, 'day');
+
+  if (daysToRelease > 5) {
+    return `:fist:  **${daysToRelease} days to Vault of the Incarnates!**  :fist:`;
+  }
+
+  const hoursToRelease = raidRelease.diff(now, 'hour');
+
+  if (hoursToRelease > 0) {
+    return `:fist:  **${hoursToRelease} hours to Vault of the Incarnates!**  :fist:`;
+  }
+
+  return null;
 }
 
 module.exports = {
@@ -84,4 +113,5 @@ module.exports = {
   getRandomBreakReminder: () => getRandomReminder(breakReminders),
   getRandomStartReminder: () => getRandomReminder(startReminders),
   getCountdownMsg,
+  getRaidCountdownMsg,
 };
