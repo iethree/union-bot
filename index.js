@@ -1,7 +1,7 @@
 // require('dotenv').config();
 const { Client, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
-const { getBreakMsg, getStartMsg, getCountdownMsg, getRaidCountdownMsg } = require('./utils.js');
+const { getBreakMsg, getStartMsg, getExpansionCountdownMsg, getRaidCountdownMsg } = require('./utils.js');
 const { BOT_TOKEN, PASSCODE } = require('./config.json');
 
 const TEST = false;
@@ -13,7 +13,7 @@ let msgType = 'break';
 const msgFunctions = {
   break: getBreakMsg,
   start: getStartMsg,
-  countdown: getCountdownMsg,
+  expansionCountdown: getExpansionCountdownMsg,
   raidCountdown: getRaidCountdownMsg,
 };
 

@@ -64,25 +64,25 @@ const getRandomReminder = (reminders) => {
   return reminders[Math.floor(Math.random() * reminders.length)];
 };
 
-const getCountdownMsg = () => {
+const getExpansionCountdownMsg = (name, emoji ) => {
   const now = dayjs().tz(tz);
-  const dragonflightRelease = dayjs().tz(tz).month(10).date(28).hour(15);
-  const daysToRelease = dragonflightRelease.diff(now, 'day');
+  const releaseTime = dayjs().tz(tz).month(8).date(22).hour(15);
+  const daysToRelease = releaseTime.diff(now, 'day');
 
   if (daysToRelease > 5) {
-    return `:dragon:  **${daysToRelease} days to Dragonflight!**  :dragon:`;
+    return `${emoji}  **${daysToRelease} days to ${name}!**  ${emoji}`;
   }
 
-  const hoursToRelease = dragonflightRelease.diff(now, 'hour');
+  const hoursToRelease = releaseTime.diff(now, 'hour');
 
   if (hoursToRelease > 0) {
-    return `:dragon:  **${hoursToRelease} hours to Dragonflight!**  :dragon:`;
+    return `${emoji}  **${hoursToRelease} hours to The War Within!**  ${emoji}`;
   }
 
-  const minutesToRelease = dragonflightRelease.diff(now, 'minute');
+  const minutesToRelease = releaseTime.diff(now, 'minute');
 
   if (minutesToRelease > 0) {
-    return `:dragon:  **${hoursToRelease} minutes to Dragonflight!**  :dragon:`;
+    return `${emoji}  **${minutesToRelease} minutes to The War Within!**  ${emoji}`;
   }
 
   return null;
@@ -112,6 +112,6 @@ module.exports = {
   getTimeToStart,
   getRandomBreakReminder: () => getRandomReminder(breakReminders),
   getRandomStartReminder: () => getRandomReminder(startReminders),
-  getCountdownMsg,
+  getExpansionCountdownMsg,
   getRaidCountdownMsg,
 };
