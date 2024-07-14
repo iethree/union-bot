@@ -1,21 +1,21 @@
-const breakReminders = require('./breakReminders.json');
-const startReminders = require('./startReminders.json');
-const { breakTimes, startTimes, tz } = require('./config.json');
-
-const dayjs = require('dayjs');
-const utc = require('dayjs/plugin/utc')
-const timezone = require('dayjs/plugin/timezone');
+import breakReminders from './breakReminders.json' with { type: "json" };
+import startReminders from './startReminders.json' with { type: "json" };
+import configFile  from './config.json' with { type: "json" };
+const { breakTimes, startTimes, tz } = configFile;
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc.js';
+import timezone from 'dayjs/plugin/timezone.js';
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-const getBreakMsg = () => {
+export const getBreakMsg = () => {
   const minsToBreak = getTimeToBreak();
   const reminder = getRandomReminder(breakReminders);
 
   return `${reminder} \n(${minsToBreak.toLocaleString()} minutes to break)`;
 };
 
-const getStartMsg = () => {
+export const getStartMsg = () => {
   const minsttoStart = getTimeToStart();
   const reminder = getRandomReminder(startReminders);
 
@@ -64,7 +64,7 @@ const getRandomReminder = (reminders) => {
   return reminders[Math.floor(Math.random() * reminders.length)];
 };
 
-const getExpansionCountdownMsg = (name, emoji ) => {
+export const getExpansionCountdownMsg = (name, emoji ) => {
   const now = dayjs().tz(tz);
   const releaseTime = dayjs().tz(tz).month(7).date(22).hour(15);
   const daysToRelease = releaseTime.diff(now, 'day');
@@ -88,7 +88,7 @@ const getExpansionCountdownMsg = (name, emoji ) => {
   return null;
 }
 
-const getRaidCountdownMsg = () => {
+export const getRaidCountdownMsg = () => {
   const now = dayjs().tz(tz);
   const raidRelease = dayjs().tz(tz).month(8).date(10).hour(18);
   const daysToRelease = raidRelease.diff(now, 'day');
@@ -106,12 +106,12 @@ const getRaidCountdownMsg = () => {
   return null;
 }
 
-module.exports = {
-  getBreakMsg, getStartMsg,
-  getTimeToBreak,
-  getTimeToStart,
-  getRandomBreakReminder: () => getRandomReminder(breakReminders),
-  getRandomStartReminder: () => getRandomReminder(startReminders),
-  getExpansionCountdownMsg,
-  getRaidCountdownMsg,
-};
+// module.exports = {
+//   getBreakMsg, getStartMsg,
+//   getTimeToBreak,
+//   getTimeToStart,
+//   getRandomBreakReminder: () => getRandomReminder(breakReminders),
+//   getRandomStartReminder: () => getRandomReminder(startReminders),
+//   getExpansionCountdownMsg,
+//   getRaidCountdownMsg,
+// };

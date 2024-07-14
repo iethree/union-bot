@@ -1,4 +1,4 @@
-const {
+import {
   getRandomBreakReminder,
   getRandomStartReminder,
   getTimeToBreak,
@@ -7,7 +7,7 @@ const {
   getStartMsg,
   getCountdownMsg,
   getRaidCountdownMsg,
-} = require('./utils.js');
+} from './utils.js';
 
 console.log(getStartMsg());
 console.log('\n');

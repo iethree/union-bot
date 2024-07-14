@@ -1,11 +1,12 @@
-// require('dotenv').config();
-const { Client, Intents } = require('discord.js');
+import 'dotenv/config';
+import { Client, Intents } from 'discord.js';
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
-const { getExpansionCountdownMsg, getRaidCountdownMsg } = require('./utils.js');
-const { breakMessage, raidStartMessage } = require('./chat.js');
-const { BOT_TOKEN, PASSCODE } = require('./config.json');
+import { getExpansionCountdownMsg, getRaidCountdownMsg } from './utils.js';
+import { breakMessage, raidStartMessage } from './chat.js';
+import configFile from './config.json' with { type: "json" };
+const { BOT_TOKEN, PASSCODE } = configFile;
 
-const TEST = false;
+const TEST = true;
 
 let CHANNEL_NAME = TEST ? 'bot-testing' : 'raid'
 
@@ -35,7 +36,7 @@ async function sendMessage(channels) {
   }
 }
 
-async function unionBot(req, res) {
+export async function unionBot(req, res) {
   if (req?.body !== PASSCODE) {
     console.error('invalid passcode', req.body);
     res.sendStatus(403);
@@ -49,5 +50,3 @@ async function unionBot(req, res) {
   client.login(BOT_TOKEN);
   res.sendStatus(202);
 }
-
-module.exports = { unionBot };
