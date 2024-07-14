@@ -66,7 +66,7 @@ const getRandomReminder = (reminders) => {
 
 const getExpansionCountdownMsg = (name, emoji ) => {
   const now = dayjs().tz(tz);
-  const releaseTime = dayjs().tz(tz).month(8).date(22).hour(15);
+  const releaseTime = dayjs().tz(tz).month(7).date(22).hour(15);
   const daysToRelease = releaseTime.diff(now, 'day');
 
   if (daysToRelease > 5) {

@@ -13,7 +13,7 @@ let msgType = 'break';
 const msgFunctions = {
   break: getBreakMsg,
   start: getStartMsg,
-  expansionCountdown: getExpansionCountdownMsg,
+  expansionCountdown: () => getExpansionCountdownMsg('The War Within', ':crossed_swords:'),
   raidCountdown: getRaidCountdownMsg,
 };
 
