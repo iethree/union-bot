@@ -1,7 +1,8 @@
 // require('dotenv').config();
 const { Client, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
-const { getBreakMsg, getStartMsg, getExpansionCountdownMsg, getRaidCountdownMsg } = require('./utils.js');
+const { getExpansionCountdownMsg, getRaidCountdownMsg } = require('./utils.js');
+const { breakMessage, raidStartMessage } = require('./chat.js');
 const { BOT_TOKEN, PASSCODE } = require('./config.json');
 
 const TEST = false;
@@ -11,8 +12,8 @@ let CHANNEL_NAME = TEST ? 'bot-testing' : 'raid'
 let msgType = 'break';
 
 const msgFunctions = {
-  break: getBreakMsg,
-  start: getStartMsg,
+  break: breakMessage,
+  start: raidStartMessage,
   expansionCountdown: () => getExpansionCountdownMsg('The War Within', ':crossed_swords:'),
   raidCountdown: getRaidCountdownMsg,
 };
@@ -27,7 +28,7 @@ client.on('ready', async () => {
 async function sendMessage(channels) {
   const channel = channels.find(c => c.name === CHANNEL_NAME);
 
-  const msg = TEST ? 'testing' : msgFunctions[msgType]?.();
+  const msg = TEST ? 'testing' : await msgFunctions[msgType]?.();
   console.log('sending to', channel.name, msg);
   if (msg) {
     await channel.send(msg);

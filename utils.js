@@ -90,17 +90,17 @@ const getExpansionCountdownMsg = (name, emoji ) => {
 
 const getRaidCountdownMsg = () => {
   const now = dayjs().tz(tz);
-  const raidRelease = dayjs().tz(tz).month(11).date(13).hour(18);
+  const raidRelease = dayjs().tz(tz).month(8).date(10).hour(18);
   const daysToRelease = raidRelease.diff(now, 'day');
 
   if (daysToRelease > 5) {
-    return `:fist:  **${daysToRelease} days to Vault of the Incarnates!**  :fist:`;
+    return `:fist:  **${daysToRelease} days to Nerub-ar Palace!**  :fist:`;
   }
 
   const hoursToRelease = raidRelease.diff(now, 'hour');
 
   if (hoursToRelease > 0) {
-    return `:fist:  **${hoursToRelease} hours to Vault of the Incarnates!**  :fist:`;
+    return `:fist:  **${hoursToRelease} hours to Nerub-ar Palace!**  :fist:`;
   }
 
   return null;
