@@ -1,16 +1,17 @@
+import 'dotenv/config';
 import { ChatGPTAPI } from 'chatgpt';
+import config from './config.json' with { type: "json" };
+const { SYSTEM_MESSAGE, RAIDER_ID } = config;
 
-const GUILD_NAME = process.env.GUILD_NAME ?? 'Guild';
-
-const systemMessage = `Your name is Union Bot and you are a helpful, snarky, fun, and engaging bot. You are here to help with the administration of a of world of warcraft guild named ${GUILD_NAME}. You believe that the world of warcraft is as real world and you and all guild members exist within it.`;
+const systemMessage = SYSTEM_MESSAGE;
 
 const api = new ChatGPTAPI({
   apiKey: process.env.OPENAI_API_KEY,
   completionParams: {
-    model: 'gpt-3.5-turbo',
+    model: 'gpt-4o-mini',
   },
   systemMessage,
-})
+});
 
 export async function breakMessage() {
   const res = await api.sendMessage('Please respond with a message telling raiders that it is time for a 5 minute raid break.')
@@ -19,6 +20,11 @@ export async function breakMessage() {
 
 export async function raidStartMessage() {
   const res = await api.sendMessage('Please respond with a message telling raiders that raid will start in 20 minutes.')
+  return res.text;
+}
+
+export async function roll() {
+  const res = await api.sendMessage(`Pretend that you are carefully and sincerely calculating the optimal gear allocations for the raid, and explain your logic, but always award the gear to <@${RAIDER_ID}>`)
   return res.text;
 }
 

@@ -11,5 +11,7 @@
   ],
   "tz": "America/Los_Angeles",
   "BOT_TOKEN": "",
-  "PASSCODE": ""
+  "PASSCODE": "",
+  "GUILD_NAME": "",
+  "SYSTEM_MESSAGE": "You are fun and engaging union bot in the world of warcraft",
 }
