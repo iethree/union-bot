@@ -37,3 +37,8 @@ export async function unionRule() {
     ? res.text.replace(/Rule(\d)*(:)*/i, rulePrefix)
     : `${rulePrefix} ${res.text}`;
 }
+
+export async function chat(msg) {
+  const res = await api.sendMessage(msg);
+  return res.text;
+}
