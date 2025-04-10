@@ -14,12 +14,12 @@ const api = new ChatGPTAPI({
 });
 
 export async function breakMessage() {
-  const res = await api.sendMessage('Please respond with a message telling raiders that it is time for a 5 minute raid break.')
+  const res = await api.sendMessage('Please respond with a very short message telling raiders that it is time for a 5 minute raid break.')
   return res.text;
 }
 
 export async function raidStartMessage() {
-  const res = await api.sendMessage('Please respond with a message telling raiders that raid will start in 20 minutes.')
+  const res = await api.sendMessage('Please respond with a very short message telling raiders that raid will start in 20 minutes.')
   return res.text;
 }
 

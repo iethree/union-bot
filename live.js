@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import { Client, Intents } from 'discord.js';
+import { getLastRaidReport } from './summarize.js';
 
 const client = new Client({ intents: [
   Intents.FLAGS.GUILDS,
@@ -28,6 +29,22 @@ client.on('messageCreate', async (message) => {
 
   const isMentioned = message.content.includes(`<@${client.user.id}>`);
   const isDm = message.channel.type === 'DM';
+
+  if (message.content == "/raid-report") {
+    const { summary, fights } = await getLastRaidReport();
+    const res = await message.channel.send("```ansi\n" + summary + "\n```");
+
+    if (!isDm) {
+      // create thread from this message
+      const thread = await res.startThread({
+        name: "Raid Report " + new Date().toLocaleString(),
+      });
+
+      for (const fight of fights) {
+        await thread.send("```ansi\n" + fight + "\n```");
+      }
+    }
+  }
 
   if (!isMentioned && !isDm) return;
 

@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "bot:test": "node index.js",
+    "dev": "nodemon live.js",
     "bot:local": "functions-framework --target unionBot --port 8081",
     "bot:deploy": "gcloud functions deploy union-bot --runtime nodejs20 --trigger-http --allow-unauthenticated --region us-central1 --entry-point unionBot --env-vars-file .env.yaml",
     "test": "node test.js"
@@ -14,6 +15,7 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@google-cloud/functions-framework": "^3.1.0",
+    "axios": "^1.8.4",
     "chatgpt": "^5.2.5",
     "dayjs": "^1.11.0",
     "discord-interactions": "^4.0.0",
