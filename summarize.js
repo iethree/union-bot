@@ -178,7 +178,7 @@ async function fetchReportRankings(reportCode, accessToken) {
 function getClassColor(className) {
   const classColors = {
     'DeathKnight': '[2;31m',   // Red
-    'DemonHunter': '[2;30m',  // Purple
+    'DemonHunter': '[2;37m',  // Purple
     'Druid': '[2;31m',        // Orange
     'Evoker': '[2;32m',       // Green-blue
     'Hunter': '[2;32m',      // Light green
@@ -217,7 +217,7 @@ function formatDuration(startTime, endTime) {
 function processRankings(fights) {
   const processedFights = fights.map(fight => ({
     name: fight.encounter.name,
-    dps: fight.roles.dps.characters.map(player => ({
+    dps: ([...fight.roles.dps.characters, ...fight.roles.tanks.characters]).map(player => ({
       name: player.name,
       class: player.class,
       itemLevel: player.bracketData,
@@ -312,9 +312,9 @@ export async function getLastRaidReport() {
       const fights = processRankings(reportData.rankings.data);
       const overall = summarizeFights(fights);
 
-      const summary = `\n\[1;37m${report.zone.name}\n` + overall.map(getPlayerLine).join('\n');
+      const summary = `\n\[1;37m${report.zone.name}[0m\n` + overall.map(getPlayerLine).join('\n');
       const detail = fights.map(fight => {
-        return `\n\[1;37m${fight.name}\n` + fight.dps.map(getPlayerLine).join('\n');
+        return `\n\[1;37m${fight.name}[0m\n` + fight.dps.map(getPlayerLine).join('\n');
       });
 
       return ({
@@ -332,7 +332,7 @@ export async function getLastRaidReport() {
 
 const getPlayerLine = (player) => {
   const classColor = getClassColor(player.class);
-  return `  ${classColor}${player.name.padEnd(16)} (${player.itemLevel}) - ${roundDps(player.dps)} DPS (${player.bracketPercent}%)`;
+  return `  ${classColor}${player.name.padEnd(16)} (${player.itemLevel}) - ${roundDps(player.dps).padStart(5)} DPS (${player.bracketPercent}%)`;
 }
 
 const roundDps = (dps) => {
@@ -340,7 +340,7 @@ const roundDps = (dps) => {
     return Number(Math.round(dps / 10000) / 100).toFixed(2) + "M";
   }
   if (dps > 1000) {
-    return Number(Math.round(dps / 10) / 100).toFixed(2) + "K";
+    return Math.round(dps / 1000) + "K";
   }
   return Math.round(dps);
 }

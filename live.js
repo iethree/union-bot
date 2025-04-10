@@ -31,13 +31,16 @@ client.on('messageCreate', async (message) => {
   const isDm = message.channel.type === 'DM';
 
   if (message.content == "/raid-report") {
-    const { summary, fights } = await getLastRaidReport();
-    const res = await message.channel.send("```ansi\n" + summary + "\n```");
+    const { summary, fights, title, date } = await getLastRaidReport();
+    const res = await message.channel.send(
+      `**${title} - ${date}**\n`
+      + "```ansi\n" + summary + "\n```"
+    );
 
     if (!isDm) {
       // create thread from this message
       const thread = await res.startThread({
-        name: "Raid Report " + new Date().toLocaleString(),
+        name: `${title} - ${date}`,
       });
 
       for (const fight of fights) {
