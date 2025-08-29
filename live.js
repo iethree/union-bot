@@ -47,6 +47,7 @@ client.on('messageCreate', async (message) => {
         await thread.send("```ansi\n" + fight + "\n```");
       }
     }
+    return;
   }
 
   if (!isMentioned && !isDm) return;

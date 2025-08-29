@@ -120,7 +120,6 @@ async function fetchGuildReports(guildID, limit = 10) {
         }
       }
     });
-    console.log('response', response.data);
 
     return response.data.data.reportData.reports.data;
   } catch (error) {
@@ -147,7 +146,9 @@ async function fetchReportRankings(reportCode, accessToken) {
           reportCode: reportCode
         }
       }
-    });
+    }).catch(console.error);
+
+    console.log('got Ranking response data');
 
     // Debug info if needed
     if (!response.data || !response.data.data) {
@@ -215,30 +216,24 @@ function formatDuration(startTime, endTime) {
 
 
 function processRankings(fights) {
-  const processedFights = fights.map(fight => ({
-    name: fight.encounter.name,
-    dps: ([...fight.roles.dps.characters, ...fight.roles.tanks.characters]).map(player => ({
-      name: player.name,
-      class: player.class,
-      itemLevel: player.bracketData,
-      dps: player.amount,
-      bracketPercent: player.bracketPercent,
-      rankPercent: player.rankPercent,
-    })).sort((a, b) => b.bracketPercent - a.bracketPercent),
-  }));
+  const processedFights = fights
+    .filter(fight => fight.size > 5) // exclude dungeons
+    .map(fight => ({
+      name: fight.encounter.name,
+      dps: ([...fight.roles.dps.characters, ...fight.roles.tanks.characters])
+        .map(player => ({
+          name: player.name,
+          class: player.class,
+          itemLevel: player.bracketData,
+          dps: player.amount,
+          bracketPercent: player.bracketPercent,
+          rankPercent: player.rankPercent,
+        })).sort((a, b) => b.bracketPercent - a.bracketPercent),
+    }));
   return processedFights;
 }
 
 function summarizeFights(fights) {
-  const player = {
-    name: 'PlayerName',
-    class: 'PlayerClass',
-    itemLevel: 658,
-    dps: [0, 1, 2],
-    bracketPercent: [0, 1, 2],
-    rankPercent: [0, 1, 2],
-  }
-
   const players = {};
 
   fights.forEach(fight => {
@@ -272,7 +267,6 @@ function summarizeFights(fights) {
 
   return summary;
 }
-
 
 export async function getLastRaidReport() {
   try {
@@ -312,7 +306,7 @@ export async function getLastRaidReport() {
       const fights = processRankings(reportData.rankings.data);
       const overall = summarizeFights(fights);
 
-      const summary = `\n\[1;37m${report.zone.name}[0m\n` + overall.map(getPlayerLine).join('\n');
+      const summary = `\n\[1;37m${report.zone.name} (overall)[0m\n` + overall.map(getPlayerLine).join('\n');
       const detail = fights.map(fight => {
         return `\n\[1;37m${fight.name}[0m\n` + fight.dps.map(getPlayerLine).join('\n');
       });
