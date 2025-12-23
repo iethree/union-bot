@@ -1,0 +1,359 @@
+[
+  {
+    "name": "Stormwind City",
+    "zone": "Elwynn Forest",
+    "faction": "Alliance",
+    "coordinates": {"x": 49.0, "y": 87.5},
+    "type": "capital"
+  },
+  {
+    "name": "Orgrimmar",
+    "zone": "Durotar",
+    "faction": "Horde",
+    "coordinates": {"x": 45.8, "y": 12.9},
+    "type": "capital"
+  },
+  {
+    "name": "Ironforge",
+    "zone": "Dun Morogh",
+    "faction": "Alliance",
+    "coordinates": {"x": 53.5, "y": 34.9},
+    "type": "capital"
+  },
+  {
+    "name": "Thunder Bluff",
+    "zone": "Mulgore",
+    "faction": "Horde",
+    "coordinates": {"x": 46.8, "y": 59.7},
+    "type": "capital"
+  },
+  {
+    "name": "Darnassus",
+    "zone": "Teldrassil",
+    "faction": "Alliance",
+    "coordinates": {"x": 43.6, "y": 76.3},
+    "type": "capital"
+  },
+  {
+    "name": "Undercity",
+    "zone": "Tirisfal Glades",
+    "faction": "Horde",
+    "coordinates": {"x": 66.2, "y": 37.4},
+    "type": "capital"
+  },
+  {
+    "name": "Shattrath City",
+    "zone": "Terokkar Forest",
+    "faction": "Neutral",
+    "coordinates": {"x": 50.0, "y": 50.0},
+    "type": "capital"
+  },
+  {
+    "name": "Dalaran",
+    "zone": "Crystalsong Forest",
+    "faction": "Neutral",
+    "coordinates": {"x": 41.2, "y": 44.9},
+    "type": "capital"
+  },
+  {
+    "name": "Silvermoon City",
+    "zone": "Eversong Woods",
+    "faction": "Horde",
+    "coordinates": {"x": 61.4, "y": 53.8},
+    "type": "capital"
+  },
+  {
+    "name": "The Exodar",
+    "zone": "Azuremyst Isle",
+    "faction": "Alliance",
+    "coordinates": {"x": 32.6, "y": 54.3},
+    "type": "capital"
+  },
+  {
+    "name": "Goldshire",
+    "zone": "Elwynn Forest",
+    "faction": "Alliance",
+    "coordinates": {"x": 42.1, "y": 65.9},
+    "type": "town"
+  },
+  {
+    "name": "Goldshire Inn",
+    "zone": "Elwynn Forest",
+    "faction": "Alliance",
+    "coordinates": {"x": 42.1, "y": 65.9},
+    "type": "town"
+  },
+  {
+    "name": "Razor Hill",
+    "zone": "Durotar",
+    "faction": "Horde",
+    "coordinates": {"x": 51.9, "y": 43.5},
+    "type": "town"
+  },
+  {
+    "name": "Sentinel Hill",
+    "zone": "Westfall",
+    "faction": "Alliance",
+    "coordinates": {"x": 56.3, "y": 47.5},
+    "type": "town"
+  },
+  {
+    "name": "Crossroads",
+    "zone": "The Barrens",
+    "faction": "Horde",
+    "coordinates": {"x": 51.5, "y": 29.6},
+    "type": "town"
+  },
+  {
+    "name": "Darkshire",
+    "zone": "Duskwood",
+    "faction": "Alliance",
+    "coordinates": {"x": 73.9, "y": 46.9},
+    "type": "town"
+  },
+  {
+    "name": "Tarren Mill",
+    "zone": "Hillsbrad Foothills",
+    "faction": "Horde",
+    "coordinates": {"x": 62.3, "y": 19.1},
+    "type": "town"
+  },
+  {
+    "name": "Southshore",
+    "zone": "Hillsbrad Foothills",
+    "faction": "Alliance",
+    "coordinates": {"x": 50.3, "y": 58.7},
+    "type": "town"
+  },
+  {
+    "name": "Booty Bay",
+    "zone": "Stranglethorn Vale",
+    "faction": "Neutral",
+    "coordinates": {"x": 27.2, "y": 77.5},
+    "type": "town"
+  },
+  {
+    "name": "Gadgetzan",
+    "zone": "Tanaris",
+    "faction": "Neutral",
+    "coordinates": {"x": 51.6, "y": 28.6},
+    "type": "town"
+  },
+  {
+    "name": "Everlook",
+    "zone": "Winterspring",
+    "faction": "Neutral",
+    "coordinates": {"x": 61.3, "y": 38.9},
+    "type": "town"
+  },
+  {
+    "name": "Ratchet",
+    "zone": "The Barrens",
+    "faction": "Neutral",
+    "coordinates": {"x": 62.4, "y": 38.6},
+    "type": "town"
+  },
+  {
+    "name": "Menethil Harbor",
+    "zone": "Wetlands",
+    "faction": "Alliance",
+    "coordinates": {"x": 10.6, "y": 59.7},
+    "type": "town"
+  },
+  {
+    "name": "Auberdine",
+    "zone": "Darkshore",
+    "faction": "Alliance",
+    "coordinates": {"x": 36.6, "y": 45.6},
+    "type": "town"
+  },
+  {
+    "name": "Astranaar",
+    "zone": "Ashenvale",
+    "faction": "Alliance",
+    "coordinates": {"x": 36.6, "y": 49.6},
+    "type": "town"
+  },
+  {
+    "name": "Splintertree Post",
+    "zone": "Ashenvale",
+    "faction": "Horde",
+    "coordinates": {"x": 73.7, "y": 61.5},
+    "type": "town"
+  },
+  {
+    "name": "Nijel's Point",
+    "zone": "Desolace",
+    "faction": "Alliance",
+    "coordinates": {"x": 66.7, "y": 6.6},
+    "type": "outpost"
+  },
+  {
+    "name": "Shadowprey Village",
+    "zone": "Desolace",
+    "faction": "Horde",
+    "coordinates": {"x": 24.1, "y": 68.3},
+    "type": "town"
+  },
+  {
+    "name": "Thelsamar",
+    "zone": "Loch Modan",
+    "faction": "Alliance",
+    "coordinates": {"x": 35.5, "y": 48.4},
+    "type": "town"
+  },
+  {
+    "name": "Kargath",
+    "zone": "Badlands",
+    "faction": "Horde",
+    "coordinates": {"x": 4.0, "y": 44.8},
+    "type": "town"
+  },
+  {
+    "name": "Lakeshire",
+    "zone": "Redridge Mountains",
+    "faction": "Alliance",
+    "coordinates": {"x": 26.7, "y": 46.5},
+    "type": "town"
+  },
+  {
+    "name": "Stonard",
+    "zone": "Swamp of Sorrows",
+    "faction": "Horde",
+    "coordinates": {"x": 46.0, "y": 54.2},
+    "type": "town"
+  },
+  {
+    "name": "Nethergarde Keep",
+    "zone": "Blasted Lands",
+    "faction": "Alliance",
+    "coordinates": {"x": 66.9, "y": 19.5},
+    "type": "outpost"
+  },
+  {
+    "name": "Cenarion Hold",
+    "zone": "Silithus",
+    "faction": "Neutral",
+    "coordinates": {"x": 55.5, "y": 36.7},
+    "type": "town"
+  },
+  {
+    "name": "Light's Hope Chapel",
+    "zone": "Eastern Plaguelands",
+    "faction": "Neutral",
+    "coordinates": {"x": 75.6, "y": 52.4},
+    "type": "outpost"
+  },
+  {
+    "name": "Chillwind Camp",
+    "zone": "Western Plaguelands",
+    "faction": "Alliance",
+    "coordinates": {"x": 42.9, "y": 84.5},
+    "type": "outpost"
+  },
+  {
+    "name": "The Bulwark",
+    "zone": "Tirisfal Glades",
+    "faction": "Horde",
+    "coordinates": {"x": 83.3, "y": 69.0},
+    "type": "outpost"
+  },
+  {
+    "name": "Morgan's Vigil",
+    "zone": "Burning Steppes",
+    "faction": "Alliance",
+    "coordinates": {"x": 85.8, "y": 68.8},
+    "type": "outpost"
+  },
+  {
+    "name": "Flame Crest",
+    "zone": "Burning Steppes",
+    "faction": "Horde",
+    "coordinates": {"x": 65.2, "y": 24.2},
+    "type": "outpost"
+  },
+  {
+    "name": "Thorium Point",
+    "zone": "Searing Gorge",
+    "faction": "Neutral",
+    "coordinates": {"x": 38.4, "y": 27.8},
+    "type": "outpost"
+  },
+  {
+    "name": "Feathermoon Stronghold",
+    "zone": "Feralas",
+    "faction": "Alliance",
+    "coordinates": {"x": 30.2, "y": 43.3},
+    "type": "town"
+  },
+  {
+    "name": "Camp Mojache",
+    "zone": "Feralas",
+    "faction": "Horde",
+    "coordinates": {"x": 76.1, "y": 43.8},
+    "type": "town"
+  },
+  {
+    "name": "Theramore Isle",
+    "zone": "Dustwallow Marsh",
+    "faction": "Alliance",
+    "coordinates": {"x": 66.3, "y": 51.6},
+    "type": "town"
+  },
+  {
+    "name": "Brackenwall Village",
+    "zone": "Dustwallow Marsh",
+    "faction": "Horde",
+    "coordinates": {"x": 36.3, "y": 31.4},
+    "type": "town"
+  },
+  {
+    "name": "Bloodvenom Post",
+    "zone": "Felwood",
+    "faction": "Horde",
+    "coordinates": {"x": 34.2, "y": 52.8},
+    "type": "outpost"
+  },
+  {
+    "name": "Talonbranch Glade",
+    "zone": "Felwood",
+    "faction": "Alliance",
+    "coordinates": {"x": 62.5, "y": 24.2},
+    "type": "outpost"
+  },
+  {
+    "name": "Freewind Post",
+    "zone": "Thousand Needles",
+    "faction": "Horde",
+    "coordinates": {"x": 45.1, "y": 49.1},
+    "type": "town"
+  },
+  {
+    "name": "Thalanaar",
+    "zone": "Feralas",
+    "faction": "Alliance",
+    "coordinates": {"x": 89.4, "y": 45.8},
+    "type": "outpost"
+  },
+  {
+    "name": "Sun Rock Retreat",
+    "zone": "Stonetalon Mountains",
+    "faction": "Horde",
+    "coordinates": {"x": 50.4, "y": 63.8},
+    "type": "town"
+  },
+  {
+    "name": "Stonetalon Peak",
+    "zone": "Stonetalon Mountains",
+    "faction": "Alliance",
+    "coordinates": {"x": 37.1, "y": 8.1},
+    "type": "outpost"
+  },
+  {
+    "name": "Zoram'gar Outpost",
+    "zone": "Ashenvale",
+    "faction": "Horde",
+    "coordinates": {"x": 12.2, "y": 33.8},
+    "type": "outpost"
+  }
+]

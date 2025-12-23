@@ -15,7 +15,7 @@ let msgType = '';
 const msgFunctions = {
   break: breakMessage,
   start: raidStartMessage,
-  expansionCountdown: () => getExpansionCountdownMsg('The War Within', ':crossed_swords:'),
+  expansionCountdown: () => getExpansionCountdownMsg('Midnight', ':new_moon:'),
   raidCountdown: getRaidCountdownMsg,
   unionRule,
   roll,

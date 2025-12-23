@@ -22,7 +22,7 @@ export const getStartMsg = () => {
   return `${reminder} \n(${minsttoStart.toLocaleString()} minutes to raid)`;
 };
 
-const getTimeToBreak = () => {
+export const getTimeToBreak = () => {
   const now = dayjs().tz(tz);
 
   const minsToBreak = breakTimes.reduce((lowest, thisOne) => {
@@ -41,7 +41,7 @@ const getTimeToBreak = () => {
   return minsToBreak;
 };
 
-const getTimeToStart = () => {
+export const getTimeToStart = () => {
   const now = dayjs().tz(tz);
 
   const minsToStart = startTimes.reduce((lowest, thisOne) => {
@@ -64,46 +64,50 @@ const getRandomReminder = (reminders) => {
   return reminders[Math.floor(Math.random() * reminders.length)];
 };
 
-export const getExpansionCountdownMsg = (name, emoji ) => {
+export const getTimeToStartText = (eventTime) => {
   const now = dayjs().tz(tz);
-  const releaseTime = dayjs().tz(tz).month(7).date(22).hour(15);
-  const daysToRelease = releaseTime.diff(now, 'day');
 
-  if (daysToRelease > 5) {
-    return `${emoji}  **${daysToRelease} days to ${name}!**  ${emoji}`;
+  const diff = eventTime.diff(now, 'minute');
+
+  if (diff < 120) {
+    return `${diff} minutes`;
   }
 
-  const hoursToRelease = releaseTime.diff(now, 'hour');
-
-  if (hoursToRelease > 0) {
-    return `${emoji}  **${hoursToRelease} hours to The War Within!**  ${emoji}`;
+  if (diff < 1600) {
+    const hours = Math.round(diff / 60);
+    return `${hours} hours`;
   }
 
-  const minutesToRelease = releaseTime.diff(now, 'minute');
-
-  if (minutesToRelease > 0) {
-    return `${emoji}  **${minutesToRelease} minutes to The War Within!**  ${emoji}`;
-  }
-
-  return null;
+  const days = Math.round(diff / 1440);
+  return `${days} days`;
 }
 
+export const getCountdownMessage = ({ name, emoji, eventTime }) => {
+  const timeToEvent = getTimeToStartText(eventTime);
+
+  return `${emoji}  **${timeToEvent} to ${name}!**  ${emoji}`;
+}
+
+export const getExpansionCountdownMsg = (name, emoji ) => {
+  const releaseTime = dayjs().tz(tz)
+    .month(2).date(3).hour(15).year(2026);
+
+  return getCountdownMessage({
+    name,
+    emoji,
+    eventTime: releaseTime
+  });
+};
+
 export const getRaidCountdownMsg = () => {
-  const now = dayjs().tz(tz);
-  const raidRelease = dayjs().tz(tz).month(8).date(10).hour(18);
-  const daysToRelease = raidRelease.diff(now, 'day');
+  const raidRelease = dayjs().tz(tz)
+    .month(2).date(17).hour(18).year(2026);
 
-  if (daysToRelease > 5) {
-    return `:fist:  **${daysToRelease} days to Nerub-ar Palace!**  :fist:`;
-  }
-
-  const hoursToRelease = raidRelease.diff(now, 'hour');
-
-  if (hoursToRelease > 0) {
-    return `:fist:  **${hoursToRelease} hours to Nerub-ar Palace!**  :fist:`;
-  }
-
-  return null;
+  return getCountdownMessage({
+    name: 'raid',
+    emoji: ':fist:',
+    eventTime: raidRelease
+  });
 }
 
 // module.exports = {
