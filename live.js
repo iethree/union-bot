@@ -14,7 +14,7 @@ const client = new Client({ intents: [
 
 // import { respond } from './chat.js';
 import configFile from './config.json' with { type: "json" };
-import { chat, raidStartMessage, generateXal } from './chat.js';
+import { chat, raidStartMessage, generateXal, handleLengthCommand } from './chat.js';
 const { BOT_TOKEN } = configFile;
 
 client.login(BOT_TOKEN);
@@ -67,6 +67,11 @@ client.on('messageCreate', async (message) => {
     if (message.content.startsWith("/xal")) {
       const { text, image } = await generateXal();
       await message.channel.send({ files: [image], content: text || undefined });
+      return;
+    }
+
+    if (message.content.startsWith("!penis")) {
+      await handleLengthCommand(message);
       return;
     }
 

@@ -8,7 +8,7 @@
     "bot:test": "node index.js",
     "dev": "nodemon live.js",
     "bot:local": "functions-framework --target unionBot --port 8081",
-    "bot:deploy": "gcloud functions deploy union-bot --runtime nodejs20 --trigger-http --allow-unauthenticated --region us-central1 --entry-point unionBot --env-vars-file .env.yaml",
+    "bot:deploy": "gcloud functions deploy union-bot --runtime nodejs20 --trigger-http --allow-unauthenticated --region us-central1 --entry-point unionBot --env-vars-file=.env.yaml",
     "test": "node test.js"
   },
   "author": "",

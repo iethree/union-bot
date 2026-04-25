@@ -7,6 +7,7 @@ import places from "./places.json" with { type: "json" };
 import { xalatathBio } from './context.js';
 import { getTimeToStartText } from './utils.js';
 const { SYSTEM_MESSAGE, RAIDER_ID, GUILD_NAME, tz } = config;
+import fs from 'fs';
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -63,4 +64,46 @@ export async function unionRule() {
   return hasRulePrefix
     ? res.text.replace(/Rule(\d)*(:)*/i, rulePrefix)
     : `${rulePrefix} ${res.text}`;
+}
+
+const generate8D = () => {
+  return `8${Array.from({ length: Math.ceil(Math.random() * 10) }, () => '=').join('')}D`;
+}
+
+const file = './ids.txt';
+
+export async function handleLengthCommand(message) {
+  const idFileExists = fs.existsSync(file);
+  if (!idFileExists) {
+    fs.writeFileSync(file, '', 'utf-8');
+  }
+  const idStore = fs.readFileSync(file, 'utf-8').split('\n').filter(Boolean);
+  const senderId = message.author.id;
+  if (!idStore.includes(senderId)) {
+    idStore.push(senderId);
+    fs.writeFileSync(file, idStore.join('\n'), 'utf-8');
+  }
+
+  const rows = await Promise.all(idStore.map(async (id) => {
+    let name = id;
+    try {
+      const member = await message.guild?.members.fetch(id);
+      name = member?.displayName ?? name;
+    } catch {
+      const user = await message.client.users.fetch(id).catch(() => null);
+      name = user?.username ?? name;
+    }
+    return { name, graphic: generate8D() };
+  }));
+
+  const nameWidth = Math.max('Name'.length, ...rows.map(r => r.name.length));
+  const graphicWidth = Math.max('Length'.length, ...rows.map(r => r.graphic.length));
+
+  const header = `${'Name'.padEnd(nameWidth)}  ${'Length'.padEnd(graphicWidth)}`;
+  const sep = `${'-'.repeat(nameWidth)}  ${'-'.repeat(graphicWidth)}`;
+  const body = rows.map(r =>
+    `${r.name.padEnd(nameWidth)}  ${r.graphic.padEnd(graphicWidth)}`
+  ).join('\n');
+
+  await message.channel.send('```\n' + [header, sep, body].join('\n') + '\n```');
 }
